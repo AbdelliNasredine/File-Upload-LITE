@@ -1,0 +1,7 @@
+{
+    "require": {
+        "slim/slim": "^3.12",
+        "kunalvarma05/dropbox-php-sdk": "^0.2.1",
+        "slim/php-view": "^2.2"
+    }
+}
