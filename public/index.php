@@ -11,7 +11,7 @@ require '../vendor/autoload.php';
 // configuration
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
-$dotenv = Dotenv\Dotenv::createImmutable(".." . DIRECTORY_SEPARATOR);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $app = new \Slim\App(['settings' => $config]);
@@ -35,14 +35,27 @@ $container['dropbox'] = function () {
 };
 
 $app->get('/', function (Request $request, Response $response) {
-    $response = $this->view->render($response, 'home.html');
+    // get all dropbox files:
+    $files = $this->dropbox->listFolder("/")->getItems()->all();
+    $data = [];
+    foreach ($files as $file) {
+        $tempLink = $this->dropbox->getTemporaryLink($file->getPathLower());
+        $data[] = array_merge($file->getData(), ['url' => $tempLink->getLink()]);
+    }
+    $response = $this->view->render(
+        $response,
+        'home.php',
+        [
+            'files' => $data,
+        ]
+    );
     return $response;
 });
 
 $app->post('/upload', function (Request $request, Response $response) {
     $pathToLocalFile = __DIR__ . DIRECTORY_SEPARATOR . "test" . DIRECTORY_SEPARATOR . "file.text";
     var_dump($pathToLocalFile);
-    var_dump($this->dropbox->listFolder("/")->getItems());
+    var_dump($this->dropbox->listFolder("/")->getItems()->all());
     die();
     $dropboxFile = new DropboxFile($pathToLocalFile);
     $file = $this->dropbox->simpleUpload($dropboxFile, "/My-Hello-World.txt", ['autorename' => true]);

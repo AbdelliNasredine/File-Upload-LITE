@@ -15,5 +15,11 @@
       <input class="input-file" type="file" name="" id="" />
       <input class="input-btn" type="submit" />
     </form>
+    <?php foreach ($files as $file): ?>
+      <h3>File Name: <?=$file['name']?> </h3>
+      <p>File size: <?=$file['size']?> </p>
+      <p>  </p>
+      <img src="<?=$file['url']?>" alt="">
+    <?php endforeach;?>
   </body>
 </html>
