@@ -11,6 +11,8 @@ require '../vendor/autoload.php';
 // configuration
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
+$dotenv = Dotenv\Dotenv::createImmutable(".." . DIRECTORY_SEPARATOR);
+$dotenv->load();
 
 $app = new \Slim\App(['settings' => $config]);
 
@@ -20,23 +22,27 @@ $container['view'] = new \Slim\Views\PhpRenderer('../pages/');
 
 // DropBox configs :
 $container['dropbox'] = function () {
-    $Dropbox_app = new DropboxApp();
-    return new Dropbox($Dropbox_app);
+    $guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
+    $Dropbox_app = new DropboxApp(
+        getenv('APP_KEY'),
+        getenv('APP_SECRET'),
+        getenv('ACCESS_TOKEN')
+    );
+    return new Dropbox(
+        $Dropbox_app,
+        ['http_client_handler' => $guzzleClient]
+    );
 };
 
 $app->get('/', function (Request $request, Response $response) {
-    $response = $this->view->render($response, 'home.php');
+    $response = $this->view->render($response, 'home.html');
     return $response;
 });
 
-$app->get('/upload-document', function (Request $request, Response $response) {
-    $response = $this->view->render($response, 'upload.php');
-    return $response;
-});
-
-$app->post('/upload-document', function (Request $request, Response $response) {
-    $pathToLocalFile = __DIR__ . DIRECTORY_SEPARATOR . "Test.txt";
-    var_dump($this->dropbox->getMetadata($pathToLocalFile));
+$app->post('/upload', function (Request $request, Response $response) {
+    $pathToLocalFile = __DIR__ . DIRECTORY_SEPARATOR . "test" . DIRECTORY_SEPARATOR . "file.text";
+    var_dump($pathToLocalFile);
+    var_dump($this->dropbox->listFolder("/")->getItems());
     die();
     $dropboxFile = new DropboxFile($pathToLocalFile);
     $file = $this->dropbox->simpleUpload($dropboxFile, "/My-Hello-World.txt", ['autorename' => true]);
