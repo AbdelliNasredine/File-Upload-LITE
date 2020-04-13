@@ -7,30 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0a80efeb65.js"></script>
-    <?php require './pages/inc/css.inc.php'  ?>
-    <style>
-        * {
-            font-family: 'Rubik', sans-serif;
-        }
-
-        .fas {
-            font-size: 18px;
-        }
-
-        .bg-blue {
-            background-color: #456880 !important;
-        }
-
-        .nav-link {
-            padding: 16px 16px;
-            margin-right: 16px;
-        }
-    </style>
-    <title>Home</title>
+    <title>Upload</title>
 </head>
 
 <body>
-    <?php require './pages/inc/navigation.inc.php'  ?>
     <div class="my-3 container">
         <div class="row">
             <div class="col">
@@ -47,7 +27,7 @@
                         <div class="p-4 bg-light">
                             <h2><i class="fas fa-book mr-3" style="font-size: 22px"></i>Add Your PFE's </h2>
                             <p class="text-muted">Fill in the below form </p>
-                            <form action="">
+                            <form action="/upload-document" method="POST">
                                 <div class="form-group row">
                                     <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
@@ -86,7 +66,6 @@
             </div>
         </div>
     </div>
-    <?php require './pages/inc/javascript.inc.php'  ?>
 </body>
 
 </html>

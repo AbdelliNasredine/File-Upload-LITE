@@ -1,1 +1,0 @@
-<link rel="stylesheet" href="../../node_modules/bootswatch/dist/pulse/bootstrap.min.css">

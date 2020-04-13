@@ -7,30 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0a80efeb65.js"></script>
-    <?php require './pages/inc/css.inc.php'  ?>
-    <style>
-        * {
-            font-family: 'Rubik', sans-serif;
-        }
-
-        .fas {
-            font-size: 18px;
-        }
-
-        .bg-blue {
-            background-color: #456880 !important;
-        }
-
-        .nav-link {
-            padding: 16px 16px;
-            margin-right: 16px;
-        }
-    </style>
     <title>Home</title>
 </head>
 
 <body>
-    <?php require './pages/inc/navigation.inc.php'  ?>
     <div class="my-3 container">
         <div class="jumbotron">
             <h1 class="display-3">Hello, Students!</h1>
@@ -46,7 +26,6 @@
             </p>
         </div>
     </div>
-    <?php require './pages/inc/javascript.inc.php'  ?>
 </body>
 
 </html>
