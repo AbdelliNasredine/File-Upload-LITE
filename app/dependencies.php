@@ -13,7 +13,7 @@ $dotenv->load();
 $container = $app->getContainer();
 
 // php view
-$container['view'] = new \Slim\Views\PhpRenderer('../pages/');
+$container['view'] = new \Slim\Views\PhpRenderer(__DIR__ . '/../app/templates/');
 
 // DropBox
 $container['dropbox'] = function () {
