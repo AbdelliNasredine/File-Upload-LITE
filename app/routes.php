@@ -1,5 +1,6 @@
 <?php
 
+use Kunnu\Dropbox\DropboxFile;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -24,13 +25,10 @@ $app->get('/', function (Request $request, Response $response) {
 $app->get('/upload', App\Action\UploaderAction::class);
 
 $app->post('/upload', function (Request $request, Response $response) {
-    $pathToLocalFile = __DIR__ . DIRECTORY_SEPARATOR . "test" . DIRECTORY_SEPARATOR . "file.text";
-    var_dump($pathToLocalFile);
-    var_dump($this->dropbox->listFolder("/")->getItems()->all());
-    die();
-    $dropboxFile = new DropboxFile($pathToLocalFile);
-    $file = $this->dropbox->simpleUpload($dropboxFile, "/My-Hello-World.txt", ['autorename' => true]);
-
-    //Uploaded File
-    $file->getName();
+    $file = $request->getUploadedFiles()['file'];
+    $fileName = "/" . $file->getClientFileName();
+    $file = DropboxFile::createByStream($fileName, $file->getStream());
+    $file = $this->dropbox->upload($file, $fileName, ['autorename' => true]);
+    $response = $response->withJson(["msg" => "file uploaded successfully!"]);
+    return $response;
 });

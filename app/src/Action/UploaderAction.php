@@ -10,7 +10,7 @@ class UploaderAction extends Action
 
     public function __invoke(Request $request, Response $response)
     {
-        $response = $this->view->render($response, 'upload.php');
+        $response = $this->getView()->render($response, 'upload.php');
         return $response;
     }
 

@@ -2,16 +2,19 @@
 
 namespace App\Action;
 
-use Slim\Views\PhpRenderer as View;
-
 class Action
 {
 
-    protected $view;
+    protected $container;
 
-    public function __construct(View $view)
+    public function __construct($container)
     {
-        $this->view = $view;
+        $this->container = $container;
+    }
+
+    public function getView()
+    {
+        return $this->container->get('view');
     }
 
 }
