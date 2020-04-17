@@ -29,6 +29,6 @@ $container['dropbox'] = function () {
 };
 
 // Actions
-$container[App\Action\Uploader::class] = function () {
-    return new App\Action\Uploader();
+$container[App\Action\UploaderAction::class] = function ($c) {
+    return new App\Action\UploaderAction($c->get("view"));
 };

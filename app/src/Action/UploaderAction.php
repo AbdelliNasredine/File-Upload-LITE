@@ -5,12 +5,12 @@ namespace App\Action;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-final class Uploader
+class UploaderAction extends Action
 {
 
     public function __invoke(Request $request, Response $response)
     {
-        $response = $response->withJson(['msg' => 'Uploader get']);
+        $response = $this->view->render($response, 'upload.php');
         return $response;
     }
 
