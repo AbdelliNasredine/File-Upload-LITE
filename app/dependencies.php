@@ -2,7 +2,6 @@
 
 use Kunnu\Dropbox\Dropbox;
 use Kunnu\Dropbox\DropboxApp;
-use Kunnu\Dropbox\DropboxFile;
 
 // .env config
 $config['displayErrorDetails'] = true;
@@ -27,4 +26,9 @@ $container['dropbox'] = function () {
         $Dropbox_app,
         ['http_client_handler' => $guzzleClient]
     );
+};
+
+// Actions
+$container[App\Action\Uploader::class] = function () {
+    return new App\Action\Uploader();
 };

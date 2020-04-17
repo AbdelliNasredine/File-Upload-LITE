@@ -21,6 +21,8 @@ $app->get('/', function (Request $request, Response $response) {
     return $response;
 });
 
+$app->get('/upload', App\Action\Uploader::class);
+
 $app->post('/upload', function (Request $request, Response $response) {
     $pathToLocalFile = __DIR__ . DIRECTORY_SEPARATOR . "test" . DIRECTORY_SEPARATOR . "file.text";
     var_dump($pathToLocalFile);
