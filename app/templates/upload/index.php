@@ -15,5 +15,6 @@
         <input type="submit" />
       </form>
     </div>
+    <script src="js/script.js"></script>
   </body>
 </html>
