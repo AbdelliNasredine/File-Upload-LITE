@@ -60,3 +60,35 @@ nav .logo {
   width: 100%;
   height: auto;
 }
+
+/* form styling */
+.form {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.form__file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.form__file + label {
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  color: white;
+  background-color: lightblue;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form__file:focus + label,
+.form__file + label:hover {
+  background-color: rgb(138, 204, 226);
+}
