@@ -2,11 +2,10 @@
 
 use App\Controllers\HomeController;
 use App\Controllers\UploadController;
-use Kunnu\Dropbox\DropboxFile;
-use Slim\Http\Request;
-use Slim\Http\Response;
 
 $app->get('/', HomeController::class . ":index");
+$app->get('/upload', UploadController::class . ":index");
+$app->post('/upload', UploadController::class . ":upload");
 
 // $app->get('/', function (Request $request, Response $response) {
 //     // get all dropbox files:
@@ -25,14 +24,3 @@ $app->get('/', HomeController::class . ":index");
 //     );
 //     return $response;
 // });
-
-$app->get('/upload', UploadController::class . ":index");
-
-$app->post('/upload', function (Request $request, Response $response) {
-    $file = $request->getUploadedFiles()['file'];
-    $fileName = "/" . $file->getClientFileName();
-    $file = DropboxFile::createByStream($fileName, $file->getStream());
-    $file = $this->dropbox->upload($file, $fileName, ['autorename' => true]);
-    $response = $response->withJson(["msg" => "file uploaded successfully!"]);
-    return $response;
-});

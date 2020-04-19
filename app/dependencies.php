@@ -28,12 +28,11 @@ $container['dropbox'] = function () {
     );
 };
 
-// Actions
-$container[App\Action\UploaderAction::class] = function ($c) {
-    return new App\Action\UploaderAction($c);
-};
-
 // Controllers
 $container[App\Controllers\HomeController::class] = function ($c) {
     return new App\Controllers\HomeController($c);
+};
+
+$container[App\Controllers\UploadController::class] = function ($c) {
+    return new App\Controllers\UploadController($c);
 };
