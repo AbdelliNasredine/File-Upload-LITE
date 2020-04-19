@@ -9,7 +9,7 @@ class HomeController extends BaseController
 {
     public function index(Request $request, Response $response)
     {
-        $response = $this->view()->render($response, "home/index.html");
+        $response = $this->view()->render($response, "home/index.php");
         return $response;
     }
 }
