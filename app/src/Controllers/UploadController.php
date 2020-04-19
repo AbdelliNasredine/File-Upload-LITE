@@ -5,11 +5,10 @@ namespace App\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class HomeController extends BaseController
+class UploadController extends BaseController
 {
     public function index(Request $request, Response $response)
     {
-        $response = $this->view()->render($response, "home/index.html");
-        return $response;
+        $response = $this->view()->render($response, "upload/index.php");
     }
 }

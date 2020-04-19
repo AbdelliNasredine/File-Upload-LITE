@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\HomeController;
+use App\Controllers\UploadController;
 use Kunnu\Dropbox\DropboxFile;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -25,7 +26,7 @@ $app->get('/', HomeController::class . ":index");
 //     return $response;
 // });
 
-$app->get('/upload', App\Action\UploaderAction::class);
+$app->get('/upload', UploadController::class . ":index");
 
 $app->post('/upload', function (Request $request, Response $response) {
     $file = $request->getUploadedFiles()['file'];
