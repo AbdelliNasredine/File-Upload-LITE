@@ -11,7 +11,7 @@
     <div class="container">
       <h1>File upload</h1>
       <p>select the file to upload it into dropbox</p>
-      <form class="form" method="POST" action="/upload" enctype="multipart/form-data">
+      <form id="form" class="form" method="POST" action="/upload" enctype="multipart/form-data">
         <input class="form__file" type="file" id="file" name="file" />
         <label for="file">Choose a file</label>
         <input class="form__submit" type="submit" />
