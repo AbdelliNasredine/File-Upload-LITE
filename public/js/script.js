@@ -6,7 +6,7 @@ fileInput.addEventListener("change", function (event) {
   const label = this.nextElementSibling;
   // get the selected file name
   let fileName = "";
-  if (this.files) {
+  if (this.files && this.files.length) {
     fileName = event.target.value.split("\\").pop();
   } else {
     fileName = "Choose a file";

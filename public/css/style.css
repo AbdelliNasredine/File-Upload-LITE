@@ -63,6 +63,7 @@ nav .logo {
 
 /* form styling */
 .form {
+  font-size: 1rem;
   display: flex;
   align-items: center;
   padding: 1rem 0;
@@ -78,17 +79,31 @@ nav .logo {
 }
 
 .form__file + label {
-  font-size: 1rem;
+  flex: 1;
   padding: 1rem 1.5rem;
   font-weight: 700;
-  color: white;
-  background-color: lightblue;
-  display: inline-block;
+  box-shadow: inset 0px 0px 0px 1px;
+  border-radius: 0.25rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.form__file:focus + label,
-.form__file + label:hover {
-  background-color: rgb(138, 204, 226);
+.form__file + label:hover,
+.form__file + label:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.form__submit {
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: lightblue;
+}
+
+.form__submit:hover,
+.form__submit:focus {
+  background-color: rgb(116, 174, 194);
 }
